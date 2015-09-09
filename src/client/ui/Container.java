@@ -39,22 +39,18 @@ import org.json.*;
  */
 public class Container extends javax.swing.JFrame {
 
-    private static final String ENDPOINT = "https://ametrics.it.uc3m.es/start/win";
+    private static final String ENDPOINT = "https://ametrics.it.uc3m.es/start/jar/";
 
     private OkHttpClient httpClient;
     private OkHttpClient http2Client;
-
-    private URL startEndpoint;
-
+    
     /**
      * Creates new form Container
      */
     public Container() {
         initComponents();
         urlInput.setText(ENDPOINT);
-
-        DefaultCaret caret = (DefaultCaret) log.getCaret();
-        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        vcodeOutput.setEnabled(false);
 
         initClients();
     }
@@ -76,35 +72,27 @@ public class Container extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        urlLabel = new javax.swing.JLabel();
-        urlInput = new javax.swing.JTextField();
+        campaignLabel = new javax.swing.JLabel();
         progress = new javax.swing.JProgressBar();
-        scroll = new javax.swing.JScrollPane();
-        log = new javax.swing.JTextPane();
         button = new javax.swing.JButton();
+        campaignInput = new javax.swing.JTextField();
+        workerlLabel = new javax.swing.JLabel();
+        workerInput = new javax.swing.JTextField();
+        urlInput = new javax.swing.JTextField();
+        urlLabel = new javax.swing.JLabel();
+        vcodeOutput = new javax.swing.JTextField();
+        vcodeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(600, 400));
-        setMinimumSize(new java.awt.Dimension(600, 400));
-        setPreferredSize(new java.awt.Dimension(600, 400));
+        setMaximumSize(new java.awt.Dimension(460, 240));
+        setMinimumSize(new java.awt.Dimension(460, 240));
+        setPreferredSize(new java.awt.Dimension(460, 240));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        urlLabel.setText("URL endpoint:");
-        getContentPane().add(urlLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 20));
-
-        urlInput.setPreferredSize(new java.awt.Dimension(200, 20));
-        urlInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                urlInputActionPerformed(evt);
-            }
-        });
-        getContentPane().add(urlInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 490, 20));
-        getContentPane().add(progress, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 570, 20));
-
-        scroll.setViewportView(log);
-
-        getContentPane().add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 570, 250));
+        campaignLabel.setText("Campaign ID:");
+        getContentPane().add(campaignLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 80, 20));
+        getContentPane().add(progress, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 430, 20));
 
         button.setText("Start");
         button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -117,41 +105,116 @@ public class Container extends javax.swing.JFrame {
                 buttonActionPerformed(evt);
             }
         });
-        getContentPane().add(button, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 70, 30));
+        getContentPane().add(button, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 70, 30));
+
+        campaignInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campaignInputActionPerformed(evt);
+            }
+        });
+        getContentPane().add(campaignInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 120, -1));
+
+        workerlLabel.setText("Worker ID:");
+        getContentPane().add(workerlLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 60, 20));
+
+        workerInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                workerInputActionPerformed(evt);
+            }
+        });
+        getContentPane().add(workerInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 110, -1));
+
+        urlInput.setPreferredSize(new java.awt.Dimension(200, 20));
+        urlInput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                urlInputActionPerformed(evt);
+            }
+        });
+        getContentPane().add(urlInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 350, 20));
+
+        urlLabel.setText("URL endpoint:");
+        getContentPane().add(urlLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 80, 20));
+
+        vcodeOutput.setPreferredSize(new java.awt.Dimension(200, 20));
+        vcodeOutput.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vcodeOutputActionPerformed(evt);
+            }
+        });
+        getContentPane().add(vcodeOutput, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 430, 20));
+        getContentPane().add(vcodeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 130, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void urlInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urlInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_urlInputActionPerformed
 
     private void buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonActionPerformed
 
     private void buttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonMouseReleased
+        String campaignId = campaignInput.getText().trim();
+        String workerId   = workerInput.getText().trim();
+        
+        if (campaignId.length() < 1) {
+            JOptionPane.showMessageDialog(
+                this, "Please introduce the Campaign ID", "Error", JOptionPane.WARNING_MESSAGE
+            );
+            return;
+            
+        } else if (workerId.length() < 1) {
+            JOptionPane.showMessageDialog(
+                this, "Please introduce the Worker ID", "Error", JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+        
+        campaignInput.setEnabled(false);
+        workerInput.setEnabled(false);
         urlInput.setEnabled(false);
+        button.setEnabled(false);
+        
         progress.setValue(0);
         progress.setIndeterminate(true);
-        button.setEnabled(false);
 
         try {
-            test(urlInput.getText());
+            String url = urlInput.getText();
+            if (url.endsWith("/") == false) {
+                url += "/";
+            }
+            test(url + campaignId + "/" + workerId);
 
             /**/
         } catch (Exception e) {
+            campaignInput.setEnabled(true);
+            workerInput.setEnabled(true);
             urlInput.setEnabled(true);
+            
             progress.setIndeterminate(false);
             progress.setValue(0);
 
             JOptionPane.showMessageDialog(
-                    this, "Invalid url: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE
+                this, "Invalid url: " + e.getMessage(), "Error", JOptionPane.WARNING_MESSAGE
             );
         }
     }//GEN-LAST:event_buttonMouseReleased
 
-    public void test(String url) throws IOException, MalformedURLException {
+    private void campaignInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campaignInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campaignInputActionPerformed
+
+    private void workerInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_workerInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_workerInputActionPerformed
+
+    private void urlInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urlInputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_urlInputActionPerformed
+
+    private void vcodeOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vcodeOutputActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vcodeOutputActionPerformed
+
+    public void test(String URL) throws IOException, MalformedURLException {
 
         Thread worker = new Thread() {
             public void run() {
@@ -161,11 +224,11 @@ public class Container extends javax.swing.JFrame {
                     int http = 0;
                     int h2 = 0;
 
-                    URL entry = new URL(urlInput.getText());
+                    URL entry = new URL(URL);
                     Request request = new Request.Builder().url(entry.toString()).build();
 
                     Response response = httpClient.newCall(request).execute();
-                    log.setText("Getting urls to test from: " + entry.toString());
+                    log("Getting urls to test from: " + entry.toString());
 
                     JSONObject json = new JSONObject(response.body().string());
 
@@ -205,8 +268,16 @@ public class Container extends javax.swing.JFrame {
                     json = new JSONObject();
                     json.put("certs", certs);
                     
-                    request(httpClient, finish, json.toString());
+                    response = request(httpClient, finish, json.toString());
+                    json = new JSONObject(response.body().string());
 
+                    String vcode = json.getString("vcode");
+                    if (vcode.length() > 0) {
+                        vcodeLabel.setText("Please, copy the VCODE:");
+                        vcodeOutput.setText(vcode);
+                        vcodeOutput.setEnabled(true);
+                    }
+                    
                     JOptionPane.showMessageDialog(
                             Container.this,
                             "Successful requests: "
@@ -231,6 +302,8 @@ public class Container extends javax.swing.JFrame {
                     progress.setValue(0);
                 }
 
+                campaignInput.setEnabled(true);
+                workerInput.setEnabled(true);
                 urlInput.setEnabled(true);
                 button.setEnabled(true);
             }
@@ -265,19 +338,16 @@ public class Container extends javax.swing.JFrame {
             log("Failed: " + e.getMessage());
         }
 
-        log.setCaretPosition(log.getText().length());
-
         return response;
     }
 
     private JSONObject getCert(SocketFactory factory, URL url) {
-        
         JSONObject json = new JSONObject();
         json.put("host", url.getHost());
         json.put("port", url.getPort());
             
         try {
-            log.setText(log.getText() + "\n" + "Get Certs: " + url.getHost() + ":" + url.getPort());
+            log("Get Certs: " + url.getHost() + ":" + url.getPort());
             
             SSLSocket socket = (SSLSocket) factory.createSocket(url.getHost(), url.getPort());
             socket.startHandshake();
@@ -300,28 +370,26 @@ public class Container extends javax.swing.JFrame {
                 }
             }
             
-            log.setText(log.getText() + "\n" + "Result: " + result.trim());
+            log("Result: " + result.trim());
             json.put("result", result.trim());
 
         } catch (SSLException se) {
-            log.setText(log.getText() + "\n" + "Error: SSLException (" + se.getMessage() + ")");
+            log("Error: SSLException (" + se.getMessage() + ")");
             json.put("result", "SSLException: " + se.getMessage());
         } catch (ConnectException ce) {
-            log.setText(log.getText() + "\n" + "Error: ConnectException (" + ce.getMessage() + ")");
+            log("Error: ConnectException (" + ce.getMessage() + ")");
             json.put("result", "ConnectException: " + ce.getMessage());
         } catch (IOException ioe) {
-            log.setText(log.getText() + "\n" + "Error: IOException (" + ioe.getMessage() + ")");
+            log("Error: IOException (" + ioe.getMessage() + ")");
             json.put("result", "IOException: " + ioe.getMessage());
         }
-        
-        log.setCaretPosition(log.getText().length());
 
         return json;
     }
 
     
     private void log(String log) {
-        this.log.setText(this.log.getText() + "\n" + log);
+        System.out.println(log);
     }
     
     /**
@@ -361,10 +429,14 @@ public class Container extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button;
-    private javax.swing.JTextPane log;
+    private javax.swing.JTextField campaignInput;
+    private javax.swing.JLabel campaignLabel;
     private javax.swing.JProgressBar progress;
-    private javax.swing.JScrollPane scroll;
     private javax.swing.JTextField urlInput;
     private javax.swing.JLabel urlLabel;
+    private javax.swing.JLabel vcodeLabel;
+    private javax.swing.JTextField vcodeOutput;
+    private javax.swing.JTextField workerInput;
+    private javax.swing.JLabel workerlLabel;
     // End of variables declaration//GEN-END:variables
 }
